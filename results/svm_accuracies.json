@@ -1,0 +1,12 @@
+{
+    "linear_separable": 1.0,
+    "linear_overlap": 0.9166666666666666,
+    "ellipse_1.0_poly": 0.95,
+    "ellipse_1.0_rbf": 0.975,
+    "ellipse_1000.0_poly": 1.0,
+    "ellipse_1000.0_rbf": 0.95,
+    "spirals_1.0_poly": 0.48,
+    "spirals_1.0_rbf": 0.595,
+    "spirals_1000.0_poly": 0.48,
+    "spirals_1000.0_rbf": 0.965
+}
