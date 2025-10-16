@@ -1,12 +1,12 @@
 {
     "credit": [
         "Best Depth: 5",
-        "Corresponding Test Accuracy: 0.732",
-        "Corresponding CV Accuracy: 0.6906666666666667"
+        "Corresponding Test Accuracy: 0.696",
+        "Corresponding CV Accuracy: 0.704"
     ],
     "digits": [
         "Best Depth: 9223372036854775807",
-        "Corresponding Test Accuracy: 0.8533333333333334",
-        "Corresponding CV Accuracy: 0.8337518931570976"
+        "Corresponding Test Accuracy: 0.8466666666666667",
+        "Corresponding CV Accuracy: 0.8196530359355638"
     ]
 }
