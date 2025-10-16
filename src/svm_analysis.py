@@ -47,7 +47,16 @@ def load_data() -> Dict[str, Tuple[np.array, np.array, np.array, np.array]]:
      
     return data_sets
 
-def plot_decision_boundary(clf, X, y, title_str, filename_str):
+def plot_decision_boundary(clf: SVC, X: np.array, y: np.array, title_str: str, filename_str: str):
+    """Plot and save the classification results for the given input and expected output values, including the original points and the model's decision boundary
+
+    Args:
+        clf (SVC): model that classifies
+        X (np.array): input data
+        y (np.array): expected outputs
+        title_str (str): title for plot
+        filename_str (str): file name for plot
+    """
     min_x1 = np.min(X[:,0])
     max_x1 = np.max(X[:,0])
     h_x1 = (max_x1 - min_x1) / 200
@@ -55,9 +64,12 @@ def plot_decision_boundary(clf, X, y, title_str, filename_str):
     max_x2 = np.max(X[:,1])
     h_x2 = (max_x2 - min_x2) / 200
     x1_v, x2_v = np.meshgrid(np.arange(min_x1, max_x1, h_x1), np.arange(min_x2, max_x2, h_x2))
-    all_meshgrid = np.array([x1_v.flatten(),x2_v.flatten()]).T # shape (N, 2)
+    # reshape the meshgrid into shape (N,2) where N is the number of coordinates that go into our meshgrid
+    all_meshgrid = np.array([x1_v.flatten(),x2_v.flatten()]).T
+    # For each (x1,x2) point combo in our mesh grid, we have a predicted class for that point
     mesh_predictions = clf.predict(all_meshgrid).reshape((len(x1_v),len(x2_v)))
-    plt.contourf(x1_v, x2_v, mesh_predictions, alpha=0.8, cmap='coolwarm') # plots decision boundary where probabilities become maximum for different classes when crossing
+    # plots decision boundary where probabilities become maximum for different classes when crossing
+    plt.contourf(x1_v, x2_v, mesh_predictions, alpha=0.8, cmap='coolwarm')
     plt.scatter(X[:,0], X[:,1], c=y, cmap='coolwarm')
     plt.title(title_str)
     plt.savefig(f"results/plots/{filename_str}")
