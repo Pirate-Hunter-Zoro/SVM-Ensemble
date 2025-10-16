@@ -129,4 +129,34 @@ class DecisionTreeClassifier:
         Returns:
             np.array: class predictions for input observations
         """
-        pass
+        if not self.root:
+            raise AssertionError("Must train DecisionTreeClassifier on data before attempting to fit it.")
+        predictions = np.zeros((len(X),))
+        for i in range(len(X)):
+            x = X[i]
+            predictions[i] = self._traverse_tree(self.root, x)
+        return predictions
+            
+    def _traverse_tree(self, current_node: DecisionTreeNode, x: np.array) -> int:
+        """Recursive helper method to use the Decision Tree to classify a given observation
+
+        Args:
+            current_node (DecisionTreeNode): 
+            x (np.array): input observation of attribute values
+
+        Returns:
+            int: classification prediction for input
+        """
+        if current_node.value != None:
+            # Leaf node
+            return current_node.value
+        else:
+            # Not leaf node
+            split_attribute = current_node.feature_index
+            split_value = current_node.threshold
+            if x[split_attribute] < split_value:
+                # Go left
+                return self._traverse_tree(current_node.left, x)
+            else:
+                # Go right
+                return self._traverse_tree(current_node.right, x)
